@@ -267,6 +267,16 @@ void MethodWithCustomEvent(){
 
 `.SendEvent("name", "value")` is for events that you want to do math on a property of that event. For example, `("coins_purchased", "100")` will let you analyze a sum or average of the coins that have been purchased for that event.
 
+Tenjin + MoPub User Level Ad Revenue Integration
+-------
+- ensure you have the latest MoPub Unity SDK installed and User Level Ad Revenue is enabled for your MoPub Account
+
+```
+var tenjin = Tenjin.getInstance("API_KEY");
+tenjin.Connect();
+tenjin.SubscribeMoPubImpressions();
+```
+
 Tenjin deferred deeplink integration instructions:
 -------
 Tenjin supports the ability to direct users to a specific part of your app after a new attributed install via Tenjin's campaign tracking URLs. You can utilize the `GetDeeplink` handler to access the deferred deeplink. To test you can follow the instructions found <a href="http://help.tenjin.io/t/how-do-i-use-and-test-deferred-deeplinks-with-my-campaigns/547">here</a>.
