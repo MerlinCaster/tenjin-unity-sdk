@@ -269,7 +269,10 @@ void MethodWithCustomEvent(){
 
 Tenjin + MoPub User Level Ad Revenue Integration
 -------
-- ensure you have the latest MoPub Unity SDK installed and User Level Ad Revenue is enabled for your MoPub Account
+
+Tenjin supports the ability to integrate with the User Level Ad Revenue feature from MoPub, which allows you to receive events which correspond to your ad revenue is affected by each advertisment show to a user. To enable this, simply follow the below instuctions.
+
+> *NOTE* Please ensure you have the latest MoPub Unity SDK installed (> 5.7.0) and User Level Ad Revenue is enabled for your MoPub Account
 
 ```
 var tenjin = Tenjin.getInstance("API_KEY");
