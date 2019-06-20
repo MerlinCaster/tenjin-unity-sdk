@@ -8,12 +8,12 @@ Tenjin Unity plugin
 - Review the [iOS](https://github.com/tenjin/tenjin-ios-sdk) and [Android](https://github.com/tenjin/tenjin-android-sdk) documentation and apply the proper platform settings to your builds. Most importantly:
   1. **iOS**: make sure you have the right build settings and you include the iOS frameworks you need.
   2. **Android**: If you have another SDK installed which already has Google Play Services installed or uses [PlayServicesResolver](https://github.com/googlesamples/unity-jar-resolver), you may need to delete this file: `/Assets/Plugins/Android/play-services-basement-11.0.4.aar`
-  3. Your "API_KEY" is located on your [Organizations tab](https://www.tenjin.io/dashboard/organizations)
+  3. Your "TENJIN_API_KEY" is located on your [Organizations tab](https://www.tenjin.io/dashboard/organizations)
 
 Tenjin install/session integration:
 -------
 - Include the Assets folder in your Unity project
-- In your project's first `Start()` method write the following `BaseTenjin instance = Tenjin.getInstance("API_KEY")` and then `instance.Connect()`
+- In your project's first `Start()` method write the following `BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY")` and then `instance.Connect()`
 
 Here's an example of the code:
 
@@ -26,7 +26,7 @@ public class TenjinExampleScript : MonoBehaviour {
   // Use this for initialization
   void Start () {
 
-    BaseTenjin instance = Tenjin.getInstance("API_KEY");
+    BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
     instance.Connect();
   }
 
@@ -40,7 +40,7 @@ public class TenjinExampleScript : MonoBehaviour {
       //do nothing
     }
     else {
-      BaseTenjin instance = Tenjin.getInstance("API_KEY");
+      BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
       instance.Connect();
     }
   }
@@ -58,7 +58,7 @@ To opt-in/opt-out:
 ```csharp
 void Start () {
 
-  BaseTenjin instance = Tenjin.getInstance("API_KEY");
+  BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
   
   boolean userOptIn = CheckOptInValue();
 
@@ -84,7 +84,7 @@ To opt-in/opt-out specific device-related parameters, you can use the `OptInPara
 If you want to only get specific device-related parameters, use `OptInParams()`. In example below, we will only these device-related parameters: `ip_address`, `advertising_id`, `developer_device_id`, `limit_ad_tracking`, `referrer`, and `iad`:
 
 ```csharp
-BaseTenjin instance = Tenjin.getInstance("API_KEY");
+BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
 
 List<string> optInParams = new List<string> {"ip_address", "advertising_id", "developer_device_id", "limit_ad_tracking", "referrer", "iad"};
 instance.OptInParams(optInParams);
@@ -95,7 +95,7 @@ instance.Connect();
 If you want to send ALL parameters except specfic device-related parameters, use `OptOutParams()`.  In example below, we will send ALL device-related parameters except: `locale`, `timezone`, and `build_id` parameters.
 
 ```csharp
-BaseTenjin instance = Tenjin.getInstance("API_KEY");
+BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
 
 List<string> optOutParams = new List<string> {"locale", "timezone", "build_id"};
 instance.OptOutParams(optOutParams);
@@ -143,7 +143,7 @@ public class TenjinExampleScript : MonoBehaviour {
 
   // Use this for initialization
   void Start () {
-    BaseTenjin instance = Tenjin.getInstance("API_KEY");
+    BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
     instance.Connect("your_deeplink://path?test=123");
   }
 
@@ -197,13 +197,13 @@ Android receipt validation requires `receipt` and `signature` are required (`tra
 
   private static void CompletedAndroidPurchase(string ProductId, string CurrencyCode, int Quantity, double UnitPrice, string Receipt, string Signature)
   {
-      BaseTenjin instance = Tenjin.getInstance("API_KEY");
+      BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
       instance.Transaction(ProductId, CurrencyCode, Quantity, UnitPrice, null, Receipt, Signature);
   }
 
   private static void CompletedIosPurchase(string ProductId, string CurrencyCode, int Quantity, double UnitPrice, string TransactionId, string Receipt)
   {
-      BaseTenjin instance = Tenjin.getInstance("API_KEY");
+      BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
       instance.Transaction(ProductId, CurrencyCode, Quantity, UnitPrice, TransactionId, Receipt, null);
   }
 ```
@@ -232,7 +232,7 @@ void CompletedPurchase(string ProductId, string CurrencyCode, int Quantity, doub
 
   //pass in the required data for the transaction without receipts
 
-  BaseTenjin instance = Tenjin.getInstance ("API_KEY");
+  BaseTenjin instance = Tenjin.getInstance ("TENJIN_API_KEY");
   instance.Transaction(ProductId, CurrencyCode, Quantity, UnitPrice, null, null, null);
 
   //any other code you want to handle in a completed purchase client side
@@ -248,14 +248,14 @@ Total Revenue will be calculated as `Quantity`*`UnitPrice`
 Tenjin custom event integration:
 -------
 - Include the Assets folder in your Unity project
-- In your projects method for the custom event write the following for a named event: `Tenjin.getInstance("<API_KEY>").SendEvent("name")` and the following for a named event with an integer value: `Tenjin.getInstance("<API_KEY>").SendEvent("nameWithValue","value")`
+- In your projects method for the custom event write the following for a named event: `Tenjin.getInstance("<TENJIN_API_KEY>").SendEvent("name")` and the following for a named event with an integer value: `Tenjin.getInstance("<TENJIN_API_KEY>").SendEvent("nameWithValue","value")`
 - Make sure `value` passed is an integer. If `value` is not an integer, your event will not be passed.
 
 Here's an example of the code:
 ```csharp
 void MethodWithCustomEvent(){
     //event with name
-    BaseTenjin instance = Tenjin.getInstance ("API_KEY");
+    BaseTenjin instance = Tenjin.getInstance ("TENJIN_API_KEY");
     instance.SendEvent("name");
 
     //event with name and integer value
@@ -267,15 +267,15 @@ void MethodWithCustomEvent(){
 
 `.SendEvent("name", "value")` is for events that you want to do math on a property of that event. For example, `("coins_purchased", "100")` will let you analyze a sum or average of the coins that have been purchased for that event.
 
-Tenjin + MoPub User Level Ad Revenue Integration
+Tenjin + MoPub Impression Level Ad Revenue Integration
 -------
 
-Tenjin supports the ability to integrate with the User Level Ad Revenue feature from MoPub, which allows you to receive events which correspond to your ad revenue is affected by each advertisment show to a user. To enable this, simply follow the below instuctions.
+Tenjin supports the ability to integrate with the Impression Level Ad Revenue feature from MoPub, which allows you to receive events which correspond to your ad revenue is affected by each advertisment show to a user. To enable this, simply follow the below instuctions.
 
-> *NOTE* Please ensure you have the latest MoPub Unity SDK installed (> 5.7.0) and User Level Ad Revenue is enabled for your MoPub Account
+> *NOTE* Please ensure you have the latest MoPub Unity SDK installed (> 5.7.0) and Impression Level Ad Revenue is enabled for your MoPub Account
 
 ```
-var tenjin = Tenjin.getInstance("API_KEY");
+var tenjin = Tenjin.getInstance("TENJIN_API_KEY");
 tenjin.Connect();
 tenjin.SubscribeMoPubImpressions();
 ```
@@ -290,7 +290,7 @@ public class TenjinExampleScript : MonoBehaviour {
 
   // Use this for initialization
   void Start () {
-    BaseTenjin instance = Tenjin.getInstance("API_KEY");
+    BaseTenjin instance = Tenjin.getInstance("TENJIN_API_KEY");
     instance.Connect();
     instance.GetDeeplink(DeferredDeeplinkCallback);
   }
