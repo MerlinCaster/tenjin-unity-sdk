@@ -1,8 +1,4 @@
-
-
-Please see our <a href="https://github.com/tenjin/tenjin-unity-sdk/wiki">Release Notes</a> to see detailed version history.
-
-Tenjin Unity plugin
+Tenjin Unity plugin - 1.10.4
 =========
 - Allows unity developers to quickly integrate with Tenjin's install API
 - Review the [iOS](https://github.com/tenjin/tenjin-ios-sdk) and [Android](https://github.com/tenjin/tenjin-android-sdk) documentation and apply the proper platform settings to your builds. Most importantly:
