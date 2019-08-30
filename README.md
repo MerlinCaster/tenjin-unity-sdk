@@ -1,4 +1,4 @@
-Tenjin Unity plugin - 1.10.4
+Tenjin Unity plugin - 1.10.5
 =========
 - Allows unity developers to quickly integrate with Tenjin's install API
 - Review the [iOS](https://github.com/tenjin/tenjin-ios-sdk) and [Android](https://github.com/tenjin/tenjin-android-sdk) documentation and apply the proper platform settings to your builds. Most importantly:
